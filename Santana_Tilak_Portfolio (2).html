@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santana Tilak — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0C1113;
+    --panel:#131A1D;
+    --panel-2:#0F1517;
+    --line:#232E31;
+    --text:#E8EEEF;
+    --muted:#8CA0A4;
+    --signal:#4FD9BE;
+    --amber:#E7A94C;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--signal); color:#06201B; }
+  a{ color:inherit; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  header.site{
+    position:sticky; top:0; z-index:20;
+    background:rgba(12,17,19,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:var(--maxw); margin:0 auto; }
+  .nav .id{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:15px; letter-spacing:0.02em; }
+  .nav .dot{ color:var(--signal); }
+  .nav ul{ list-style:none; display:flex; gap:26px; margin:0; padding:0; }
+  .nav a{ text-decoration:none; color:var(--muted); font-size:14px; transition:color .15s; }
+  .nav a:hover{ color:var(--text); }
+
+  /* HERO */
+  .hero{ padding:88px 0 56px; border-bottom:1px solid var(--line); }
+  .hero .kicker{ color:var(--signal); font-family:'IBM Plex Mono',monospace; font-size:13px; margin-bottom:18px; }
+  .hero h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:clamp(34px, 5vw, 52px);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    max-width:14ch;
+    margin:0 0 22px;
+  }
+  .hero p.lede{ color:var(--muted); max-width:56ch; font-size:17px; margin:0 0 34px; }
+  .hero .cta-row{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:56px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 18px; border-radius:3px; font-size:14px; font-weight:500;
+    text-decoration:none; border:1px solid var(--line); transition:border-color .15s, background .15s;
+  }
+  .btn.primary{ background:var(--signal); color:#06201B; border-color:var(--signal); font-weight:600; }
+  .btn.primary:hover{ background:#3fc7ab; }
+  .btn.ghost{ color:var(--text); }
+  .btn.ghost:hover{ border-color:var(--muted); }
+
+  /* readout strip */
+  .readout{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .readout .cell{ padding:18px 20px; border-right:1px solid var(--line); }
+  .readout .cell:last-child{ border-right:none; }
+  .readout .val{ font-family:'IBM Plex Mono', monospace; font-size:22px; color:var(--amber); font-weight:500; }
+  .readout .lbl{ color:var(--muted); font-size:12.5px; margin-top:6px; }
+
+  .spark{ margin-top:36px; }
+  .spark svg{ width:100%; height:64px; display:block; }
+  .spark .cap{ color:var(--muted); font-size:12px; margin-top:8px; font-family:'IBM Plex Mono',monospace; }
+  .spark path.line{
+    stroke:var(--signal); stroke-width:2; fill:none;
+    stroke-dasharray:600; stroke-dashoffset:600;
+    animation:draw 1.8s ease forwards .3s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+
+  section{ padding:64px 0; border-bottom:1px solid var(--line); }
+  h2.section-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:22px; font-weight:600; margin:0 0 8px;
+  }
+  p.section-sub{ color:var(--muted); margin:0 0 40px; font-size:15px; max-width:60ch; }
+
+  /* PROJECTS as spec-sheet rows */
+  .project{
+    border:1px solid var(--line);
+    border-radius:4px;
+    margin-bottom:20px;
+    overflow:hidden;
+    background:var(--panel);
+  }
+  .project-head{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:20px;
+    padding:22px 24px 16px;
+  }
+  .project-head h3{ font-family:'Space Grotesk',sans-serif; font-size:19px; margin:0 0 6px; font-weight:600; }
+  .project-head .stack{ color:var(--muted); font-size:13px; }
+  .project-links{ display:flex; gap:10px; flex-shrink:0; }
+  .project-links a{
+    font-size:13px; text-decoration:none; padding:7px 12px; border:1px solid var(--line); border-radius:3px;
+    white-space:nowrap;
+  }
+  .project-links a.live{ color:#06201B; background:var(--signal); border-color:var(--signal); font-weight:600; }
+  .project-links a.repo{ color:var(--muted); }
+  .project-links a.repo:hover{ color:var(--text); border-color:var(--muted); }
+  .project-body{ padding:0 24px 22px; }
+  .project-body p{ color:var(--text); font-size:14.5px; margin:0 0 16px; max-width:70ch; }
+  .spec{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1px; background:var(--line);
+    border:1px solid var(--line); border-radius:3px; overflow:hidden;
+  }
+  .spec div{ background:var(--panel-2); padding:12px 14px; }
+  .spec .k{ color:var(--muted); font-size:11.5px; text-transform:none; margin-bottom:4px; }
+  .spec .v{ font-family:'IBM Plex Mono',monospace; color:var(--amber); font-size:14.5px; }
+
+  /* EXPERIENCE */
+  .timeline{ position:relative; padding-left:26px; }
+  .timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .tl-item{ position:relative; margin-bottom:36px; }
+  .tl-item:last-child{ margin-bottom:0; }
+  .tl-item::before{
+    content:""; position:absolute; left:-26px; top:5px; width:9px; height:9px; border-radius:50%;
+    background:var(--signal); box-shadow:0 0 0 3px var(--panel-2);
+  }
+  .tl-item h3{ font-family:'Space Grotesk',sans-serif; font-size:17px; margin:0 0 4px; font-weight:600; }
+  .tl-item .when{ color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:12.5px; margin-bottom:10px; }
+  .tl-item ul{ margin:0; padding-left:18px; color:var(--text); font-size:14.5px; }
+  .tl-item li{ margin-bottom:6px; }
+
+  /* SKILLS */
+  .stack-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:22px; }
+  .stack-group h4{
+    font-family:'IBM Plex Mono',monospace; color:var(--signal); font-size:12.5px; margin:0 0 12px; font-weight:500;
+  }
+  .stack-group ul{ list-style:none; margin:0; padding:0; }
+  .stack-group li{
+    color:var(--text); font-size:14px; padding:7px 0; border-bottom:1px solid var(--line);
+  }
+  .stack-group li:last-child{ border-bottom:none; }
+
+  /* EDUCATION / CERTS */
+  .edu-row{ display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:8px; }
+  .edu-row h3{ font-family:'Space Grotesk',sans-serif; font-size:17px; margin:0; font-weight:600; }
+  .edu-row .when{ color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:13px; }
+  .edu-sub{ color:var(--muted); font-size:14px; margin-top:2px; }
+  .certs{ margin-top:28px; list-style:none; padding:0; }
+  .certs li{ padding:10px 0; border-bottom:1px solid var(--line); font-size:14.5px; }
+  .certs li:last-child{ border-bottom:none; }
+  .certs .cname{ color:var(--text); }
+  .certs .cwhen{ color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:12.5px; }
+
+  footer{ padding:54px 0 70px; }
+  footer h2{ font-family:'Space Grotesk',sans-serif; font-size:26px; margin:0 0 14px; }
+  footer p{ color:var(--muted); max-width:50ch; margin:0 0 28px; font-size:15px; }
+  .contact-row{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px; }
+  .foot-meta{ color:var(--muted); font-size:13px; font-family:'IBM Plex Mono',monospace; }
+
+  @media (max-width:680px){
+    .nav ul{ gap:16px; }
+    .nav a{ font-size:13px; }
+    .readout{ grid-template-columns:repeat(2,1fr); }
+    .readout .cell:nth-child(2){ border-right:none; }
+    .readout .cell{ border-bottom:1px solid var(--line); }
+    .project-head{ flex-direction:column; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .spark path.line{ animation:none; stroke-dashoffset:0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <div class="id">Santana Tilak <span class="dot">•</span> AI/ML</div>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="wrap hero">
+  <div class="kicker">// hyderabad, india — b.tech ai/ml, class of 2028</div>
+  <h1>I build models that turn raw data into decisions.</h1>
+  <p class="lede">Four deployed ML/analytics projects, two internships, and a habit of shipping the dashboard, not just the notebook. Currently studying AI &amp; Machine Learning at Anurag University.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="#work">See the projects</a>
+    <a class="btn ghost" href="mailto:tilaksontana59@gmail.com">tilaksontana59@gmail.com</a>
+    <a class="btn ghost" href="https://github.com/SANTANATILAK" target="_blank" rel="noopener">GitHub</a>
+  </div>
+
+  <div class="readout">
+    <div class="cell"><div class="val">1.1M+</div><div class="lbl">mandi price records processed</div></div>
+    <div class="cell"><div class="val">74.21%</div><div class="lbl">crash-risk model accuracy</div></div>
+    <div class="cell"><div class="val">10K+</div><div class="lbl">K-Pop chart records analyzed</div></div>
+    <div class="cell"><div class="val">4</div><div class="lbl">deployed end-to-end projects</div></div>
+  </div>
+
+  <div class="spark">
+    <svg viewBox="0 0 600 64" preserveAspectRatio="none">
+      <path class="line" d="M0,46 L40,44 L80,48 L120,38 L160,40 L200,22 L240,28 L280,14 L320,20 L360,10 L400,26 L440,18 L480,8 L520,16 L560,6 L600,12" />
+    </svg>
+    <div class="cap">momentum spike score — sample output, K-Pop analytics pipeline</div>
+  </div>
+</div>
+
+<section id="work" class="wrap">
+  <h2 class="section-title">Selected work</h2>
+  <p class="section-sub">Four projects, each shipped as a working app rather than left in a notebook.</p>
+
+  <div class="project">
+    <div class="project-head">
+      <div>
+        <h3>Crop Price Crash Prediction</h3>
+        <div class="stack">Python · Scikit-Learn · XGBoost · Pandas · Streamlit</div>
+      </div>
+      <div class="project-links">
+        <a class="live" href="https://crop-price-crash-predicition-co8yd2jzbhqve6dnrbjhlx.streamlit.app/#90-day-price-movement" target="_blank" rel="noopener">Live demo</a>
+        <a class="repo" href="https://github.com/SANTANATILAK/Crop-Price-Crash-Predicition" target="_blank" rel="noopener">Code</a>
+      </div>
+    </div>
+    <div class="project-body">
+      <p>Processed 1.1M+ real mandi price records across 23 commodities, 1,386 markets and 8 states, engineering 18 price and time-based features. Compared three classifiers and tuned a Random Forest for crash-risk detection, then shipped it as a dashboard giving SELL NOW / SAFE TO WAIT calls with market and price-trend exploration.</p>
+      <div class="spec">
+        <div><div class="k">Records</div><div class="v">1.1M+</div></div>
+        <div><div class="k">Accuracy</div><div class="v">74.21%</div></div>
+        <div><div class="k">ROC-AUC</div><div class="v">80.56%</div></div>
+        <div><div class="k">F1-score</div><div class="v">51.89%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-head">
+      <div>
+        <h3>K-Pop Momentum Analytics &amp; Prediction Dashboard</h3>
+        <div class="stack">Python · Pandas · NumPy · Streamlit · Plotly</div>
+      </div>
+      <div class="project-links">
+        <a class="live" href="https://kpop-analytics-dashboard-sxgph67w8gtodgazaj5fml.streamlit.app/" target="_blank" rel="noopener">Live demo</a>
+      </div>
+    </div>
+    <div class="project-body">
+      <p>Analyzed 10,000+ chart records and engineered five custom momentum metrics — including a Momentum Spike Score and a Post-Comeback Retention Rate — validated against known comeback events. Deployed as an interactive dashboard surfacing trends invisible in raw chart rankings.</p>
+      <div class="spec">
+        <div><div class="k">Chart records</div><div class="v">10K+</div></div>
+        <div><div class="k">Custom metrics</div><div class="v">5</div></div>
+        <div><div class="k">Visualizations</div><div class="v">8+</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-head">
+      <div>
+        <h3>AI-Based Water Demand Forecasting</h3>
+        <div class="stack">Python · Scikit-Learn · Pandas · NumPy</div>
+      </div>
+      <div class="project-links">
+        <a class="live" href="https://ai-water-distribution-and-management-gm6dzidfdezcae6wyasfvk.streamlit.app/" target="_blank" rel="noopener">Live demo</a>
+      </div>
+    </div>
+    <div class="project-body">
+      <p>Built a regression-based forecasting pipeline on 400+ data points with a custom feature-engineering layer, aimed at reducing water wastage, leakage and pumping energy costs. Modeled peak demand to enable proactive supply redistribution, with dashboards to visualize accuracy and demand trends.</p>
+      <div class="spec">
+        <div><div class="k">Data points</div><div class="v">400+</div></div>
+        <div><div class="k">Approach</div><div class="v">Regression</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-head">
+      <div>
+        <h3>Smart AI-Based Waste Management System</h3>
+        <div class="stack">Python · SQL · Pandas</div>
+      </div>
+      <div class="project-links">
+        <a class="live" href="https://waste-management-73thyafkmhawmpusqifrgz.streamlit.app/" target="_blank" rel="noopener">Live demo</a>
+      </div>
+    </div>
+    <div class="project-body">
+      <p>Engineered a data collection framework across 600+ records and ran geographic zone-pattern analysis to power data-driven waste collection scheduling and resource allocation.</p>
+      <div class="spec">
+        <div><div class="k">Records</div><div class="v">600+</div></div>
+        <div><div class="k">Focus</div><div class="v">Zone patterns</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="wrap">
+  <h2 class="section-title">Experience</h2>
+  <p class="section-sub">Two remote internships focused on end-to-end ML delivery, not just modeling.</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <h3>Data Analytics &amp; ML Engineer Intern — Unified Mentor Pvt. Ltd.</h3>
+      <div class="when">Mar 2026 – Jun 2026 · Remote</div>
+      <ul>
+        <li>Ran EDA on 10,000+ K-Pop chart records with Pandas &amp; NumPy; engineered 5 domain-specific metrics, including a Momentum Spike Score and Post-Comeback Retention Rate.</li>
+        <li>Built a Python ML pipeline for time-series pattern detection and statistical feature engineering; designed a SQL-backed architecture with REST APIs for production analytics.</li>
+        <li>Deployed a Streamlit dashboard with 8+ interactive Plotly visualizations, including model validation and accuracy monitoring; mentored 2 junior engineers on ML best practices.</li>
+      </ul>
+    </div>
+    <div class="tl-item">
+      <h3>Machine Learning Intern — iStudio</h3>
+      <div class="when">May 2026 – Jun 2026 · Remote</div>
+      <ul>
+        <li>Selected via the Internship Common Aptitude Test (iCAT); completed applied modules on supervised learning and model evaluation.</li>
+        <li>Submitted a chart-momentum prediction project as the certification capstone.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="wrap">
+  <h2 class="section-title">Stack</h2>
+  <p class="section-sub">What I reach for, grouped by where it shows up in a project.</p>
+  <div class="stack-grid">
+    <div class="stack-group">
+      <h4>LANGUAGES</h4>
+      <ul>
+        <li>Python</li>
+        <li>SQL</li>
+        <li>JavaScript</li>
+        <li>HTML</li>
+      </ul>
+    </div>
+    <div class="stack-group">
+      <h4>ML / DATA</h4>
+      <ul>
+        <li>Pandas &amp; NumPy</li>
+        <li>Scikit-Learn</li>
+        <li>Random Forest &amp; XGBoost</li>
+        <li>TensorFlow (fundamentals)</li>
+      </ul>
+    </div>
+    <div class="stack-group">
+      <h4>DELIVERY</h4>
+      <ul>
+        <li>Streamlit &amp; Plotly</li>
+        <li>Joblib (model serialization)</li>
+        <li>REST APIs</li>
+        <li>Docker &amp; Linux</li>
+      </ul>
+    </div>
+    <div class="stack-group">
+      <h4>DATA / INFRA</h4>
+      <ul>
+        <li>MySQL — design, joins, indexing</li>
+        <li>Python–MySQL integration</li>
+        <li>Git &amp; GitHub</li>
+        <li>OOP &amp; DSA</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="wrap">
+  <h2 class="section-title">Education &amp; certifications</h2>
+  <div class="edu-row">
+    <h3>B.Tech, Artificial Intelligence &amp; Machine Learning — Anurag University, Hyderabad</h3>
+    <div class="when">Expected 2028</div>
+  </div>
+  <div class="edu-sub">CGPA 7.74/10 · Deep Learning (CNNs, Backpropagation), Machine Learning, Generative AI, Data Structures &amp; Algorithms, OS, DBMS</div>
+
+  <ul class="certs">
+    <li><span class="cname">Machine Learning Specialization — Unified Mentor</span><br><span class="cwhen">ML fundamentals, algorithms, feature engineering, model evaluation</span></li>
+    <li><span class="cname">Oracle Fusion AI Agent Studio – Certified Foundations Associate</span><br><span class="cwhen">Jun 2026</span></li>
+    <li><span class="cname">Python Essentials 1 — Cisco Networking Academy &amp; OpenEDG Python Institute</span><br><span class="cwhen">Sep 2026</span></li>
+  </ul>
+</section>
+
+<footer class="wrap" id="contact">
+  <h2>Let's talk.</h2>
+  <p>Open to AI/ML engineering internships and entry-level roles. The fastest way to reach me is email.</p>
+  <div class="contact-row">
+    <a class="btn primary" href="mailto:tilaksontana59@gmail.com">tilaksontana59@gmail.com</a>
+    <a class="btn ghost" href="tel:+919861255417">+91 98612 55417</a>
+    <a class="btn ghost" href="https://www.linkedin.com/in/sontana-tilak-04158a302" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn ghost" href="https://github.com/SANTANATILAK" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="foot-meta">Hyderabad, India</div>
+</footer>
+
+</body>
+</html>
